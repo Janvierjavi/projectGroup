@@ -24,6 +24,7 @@ class PostsController < ApplicationController
   # POST /posts
   # POST /posts.json
   def create
+    if logged_in?
     @post = Post.new(post_params)
 
     respond_to do |format|
@@ -35,6 +36,7 @@ class PostsController < ApplicationController
         format.json { render json: @post.errors, status: :unprocessable_entity }
       end
     end
+end
   end
 
   # PATCH/PUT /posts/1
